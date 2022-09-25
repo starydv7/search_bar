@@ -15,7 +15,7 @@ import {
   updateProductssSuccess,
 } from "../Redux/action";
 // import Editpage from "./Editpage";
-const HomePage = () => {
+const Productpage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -23,16 +23,15 @@ const HomePage = () => {
   const getProducts = () => {
     dispatch(getPrductsRequest());
     axios
-      .get("http://localhost:8080/products")
+      .get("https://api-pawan.herokuapp.com/hotels")
       .then((res) => dispatch(getProductsSuccess(res.data)))
       .catch((err) => dispatch(getProductsFailure(err)));
-    };
-    console.log(getProducts);
+  };
   const Deleted = (id) => {
     console.log(id);
     dispatch(deleteproductsRequest());
     axios
-      .delete(`http://localhost:8080/products/${id}`)
+      .delete(`https://api-pawan.herokuapp.com/hotels/${id}`)
       .then((res) => dispatch(deleteProductsSuccess(getProducts())))
       .catch((err) => dispatch(deleteproductsFailure(err)));
     getProducts();
@@ -88,4 +87,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Productpage;
